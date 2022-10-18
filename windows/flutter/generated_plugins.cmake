@@ -3,12 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  audioplayers_windows
-  connectivity_plus_windows
-  dynamic_color
-  screen_retriever
-  sentry_flutter
-  window_manager
+  url_launcher_windows
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

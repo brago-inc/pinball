@@ -427,7 +427,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "me.kimmy.apps.flutter-games-boilerplate.mac";
+				PRODUCT_BUNDLE_IDENTIFIER = me.kimmy.apps.pinball.mac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
@@ -557,7 +557,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "me.kimmy.apps.flutter-games-boilerplate.mac";
+				PRODUCT_BUNDLE_IDENTIFIER = me.kimmy.apps.pinball.mac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -581,7 +581,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "me.kimmy.apps.flutter-games-boilerplate.mac";
+				PRODUCT_BUNDLE_IDENTIFIER = me.kimmy.apps.pinball.mac;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
