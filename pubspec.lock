@@ -309,7 +309,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.4"
+    version: "0.13.5"
   http_multi_server:
     dependency: transitive
     description:
@@ -324,6 +324,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  http_pinball_api:
+    dependency: "direct main"
+    description:
+      path: "packages/http_pinball_api"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   intl:
     dependency: "direct main"
     description:
@@ -351,7 +358,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.4.0"
+    version: "4.7.0"
   leaderboard_repository:
     dependency: "direct main"
     description:
@@ -485,6 +492,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  pinball_api:
+    dependency: "direct main"
+    description:
+      path: "packages/pinball_api"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   pinball_audio:
     dependency: "direct main"
     description:
@@ -503,6 +517,20 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/pinball_flame"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  pinball_models:
+    dependency: "direct main"
+    description:
+      path: "packages/pinball_models"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  pinball_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/pinball_repository"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -569,6 +597,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.27.5"
   share_repository:
     dependency: "direct main"
     description:

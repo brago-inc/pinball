@@ -50,15 +50,23 @@ dependencies:
     sdk: flutter
   geometry:
     path: packages/geometry
+  http_pinball_api:
+    path: packages/http_pinball_api
   intl: ^0.17.0
   leaderboard_repository:
     path: packages/leaderboard_repository
+  pinball_api:
+    path: packages/pinball_api
   pinball_audio:
     path: packages/pinball_audio
   pinball_components:
     path: packages/pinball_components
   pinball_flame:
     path: packages/pinball_flame
+  pinball_models:
+    path: packages/pinball_models
+  pinball_repository:
+    path: packages/pinball_repository
   pinball_theme:
     path: packages/pinball_theme
   pinball_ui:
