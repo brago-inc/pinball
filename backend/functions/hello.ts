@@ -21,8 +21,6 @@ const handler: Handler = async (event, context) => {
       return { statusCode: 500, body: error }
     }
     return { statusCode: 500, body: (error as any).message }
-  } finally {
-    await client.close();
   }
 }
 
