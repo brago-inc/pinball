@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:leaderboard_repository/leaderboard_repository.dart';
+import 'package:pinball_models/pinball_models.dart';
 import 'package:pinball_theme/pinball_theme.dart';
 
 /// {@template leaderboard_entry}

@@ -1,7 +1,7 @@
 import 'package:http_pinball_api/http_pinball_api.dart';
 
-class TrendingHttpBaseClient extends AbstractBaseClient {
-  TrendingHttpBaseClient(
+class PinballHttpBaseClient extends AbstractBaseClient {
+  PinballHttpBaseClient(
     super.baseUrl, {
     Client? client,
   }) : _inner = client ?? Client();

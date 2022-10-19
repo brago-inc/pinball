@@ -2,33 +2,34 @@
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pinball/game/components/backbox/bloc/backbox_bloc.dart';
+import 'package:pinball_models/pinball_models.dart';
+import 'package:pinball_repository/pinball_repository.dart';
 import 'package:pinball_theme/pinball_theme.dart';
 
-class _MockLeaderboardRepository extends Mock implements LeaderboardRepository {
+class _MockPinballRepository extends Mock implements PinballRepository {
 }
 
 void main() {
-  late LeaderboardRepository leaderboardRepository;
+  late PinballRepository pinballRepository;
   const emptyEntries = <LeaderboardEntryData>[];
   const filledEntries = [LeaderboardEntryData.empty];
 
   group('BackboxBloc', () {
     test('inits state with LeaderboardSuccessState when has entries', () {
-      leaderboardRepository = _MockLeaderboardRepository();
+      pinballRepository = _MockPinballRepository();
       final bloc = BackboxBloc(
-        leaderboardRepository: leaderboardRepository,
+        pinballRepository: pinballRepository,
         initialEntries: filledEntries,
       );
       expect(bloc.state, isA<LeaderboardSuccessState>());
     });
 
     test('inits state with LeaderboardFailureState when has no entries', () {
-      leaderboardRepository = _MockLeaderboardRepository();
+      pinballRepository = _MockPinballRepository();
       final bloc = BackboxBloc(
-        leaderboardRepository: leaderboardRepository,
+        pinballRepository: pinballRepository,
         initialEntries: null,
       );
       expect(bloc.state, isA<LeaderboardFailureState>());
@@ -37,10 +38,10 @@ void main() {
     blocTest<BackboxBloc, BackboxState>(
       'adds InitialsFormState on PlayerInitialsRequested',
       setUp: () {
-        leaderboardRepository = _MockLeaderboardRepository();
+        pinballRepository = _MockPinballRepository();
       },
       build: () => BackboxBloc(
-        leaderboardRepository: leaderboardRepository,
+        pinballRepository: pinballRepository,
         initialEntries: emptyEntries,
       ),
       act: (bloc) => bloc.add(
@@ -58,9 +59,9 @@ void main() {
       blocTest<BackboxBloc, BackboxState>(
         'adds [LoadingState, InitialsSuccessState] when submission succeeds',
         setUp: () {
-          leaderboardRepository = _MockLeaderboardRepository();
+          pinballRepository = _MockPinballRepository();
           when(
-            () => leaderboardRepository.addLeaderboardEntry(
+            () => pinballRepository.addLeaderboardEntry(
               LeaderboardEntryData(
                 playerInitials: 'AAA',
                 score: 10,
@@ -70,7 +71,7 @@ void main() {
           ).thenAnswer((_) async {});
         },
         build: () => BackboxBloc(
-          leaderboardRepository: leaderboardRepository,
+          pinballRepository: pinballRepository,
           initialEntries: emptyEntries,
         ),
         act: (bloc) => bloc.add(
@@ -89,9 +90,9 @@ void main() {
       blocTest<BackboxBloc, BackboxState>(
         'adds [LoadingState, InitialsFailureState] when submission fails',
         setUp: () {
-          leaderboardRepository = _MockLeaderboardRepository();
+          pinballRepository = _MockPinballRepository();
           when(
-            () => leaderboardRepository.addLeaderboardEntry(
+            () => pinballRepository.addLeaderboardEntry(
               LeaderboardEntryData(
                 playerInitials: 'AAA',
                 score: 10,
@@ -101,7 +102,7 @@ void main() {
           ).thenThrow(Exception('Error'));
         },
         build: () => BackboxBloc(
-          leaderboardRepository: leaderboardRepository,
+          pinballRepository: pinballRepository,
           initialEntries: emptyEntries,
         ),
         act: (bloc) => bloc.add(
@@ -122,10 +123,10 @@ void main() {
       blocTest<BackboxBloc, BackboxState>(
         'emits ShareState',
         setUp: () {
-          leaderboardRepository = _MockLeaderboardRepository();
+          pinballRepository = _MockPinballRepository();
         },
         build: () => BackboxBloc(
-          leaderboardRepository: leaderboardRepository,
+          pinballRepository: pinballRepository,
           initialEntries: emptyEntries,
         ),
         act: (bloc) => bloc.add(
@@ -141,10 +142,10 @@ void main() {
       blocTest<BackboxBloc, BackboxState>(
         'emits ShareState',
         setUp: () {
-          leaderboardRepository = _MockLeaderboardRepository();
+          pinballRepository = _MockPinballRepository();
         },
         build: () => BackboxBloc(
-          leaderboardRepository: leaderboardRepository,
+          pinballRepository: pinballRepository,
           initialEntries: emptyEntries,
         ),
         act: (bloc) => bloc.add(
@@ -160,15 +161,15 @@ void main() {
       blocTest<BackboxBloc, BackboxState>(
         'adds [LoadingState, LeaderboardSuccessState] when request succeeds',
         setUp: () {
-          leaderboardRepository = _MockLeaderboardRepository();
+          pinballRepository = _MockPinballRepository();
           when(
-            () => leaderboardRepository.fetchTop10Leaderboard(),
+            () => pinballRepository.fetchTop10Leaderboard(),
           ).thenAnswer(
             (_) async => [LeaderboardEntryData.empty],
           );
         },
         build: () => BackboxBloc(
-          leaderboardRepository: leaderboardRepository,
+          pinballRepository: pinballRepository,
           initialEntries: emptyEntries,
         ),
         act: (bloc) => bloc.add(LeaderboardRequested()),
@@ -181,13 +182,13 @@ void main() {
       blocTest<BackboxBloc, BackboxState>(
         'adds [LoadingState, LeaderboardFailureState] when request fails',
         setUp: () {
-          leaderboardRepository = _MockLeaderboardRepository();
+          pinballRepository = _MockPinballRepository();
           when(
-            () => leaderboardRepository.fetchTop10Leaderboard(),
+            () => pinballRepository.fetchTop10Leaderboard(),
           ).thenThrow(Exception('Error'));
         },
         build: () => BackboxBloc(
-          leaderboardRepository: leaderboardRepository,
+          pinballRepository: pinballRepository,
           initialEntries: emptyEntries,
         ),
         act: (bloc) => bloc.add(LeaderboardRequested()),

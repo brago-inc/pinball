@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pinball/assets_manager/assets_manager.dart';
 import 'package:pinball/game/game.dart';
@@ -11,13 +10,14 @@ import 'package:pinball/l10n/l10n.dart';
 import 'package:pinball/select_character/select_character.dart';
 import 'package:pinball/start_game/start_game.dart';
 import 'package:pinball_audio/pinball_audio.dart';
+import 'package:pinball_repository/pinball_repository.dart';
 import 'package:pinball_ui/pinball_ui.dart';
 import 'package:platform_helper/platform_helper.dart';
 import 'package:share_repository/share_repository.dart';
 
 class _MockAssetsManagerCubit extends Mock implements AssetsManagerCubit {}
 
-class _MockLeaderboardRepository extends Mock implements LeaderboardRepository {
+class _MockPinballRepository extends Mock implements PinballRepository {
 }
 
 class _MockShareRepository extends Mock implements ShareRepository {}
@@ -60,7 +60,7 @@ extension PumpApp on WidgetTester {
     StartGameBloc? startGameBloc,
     AssetsManagerCubit? assetsManagerCubit,
     CharacterThemeCubit? characterThemeCubit,
-    LeaderboardRepository? leaderboardRepository,
+    PinballRepository? leaderboardRepository,
     ShareRepository? shareRepository,
     PinballAudioPlayer? pinballAudioPlayer,
     PlatformHelper? platformHelper,
@@ -70,7 +70,7 @@ extension PumpApp on WidgetTester {
         MultiRepositoryProvider(
           providers: [
             RepositoryProvider.value(
-              value: leaderboardRepository ?? _MockLeaderboardRepository(),
+              value: leaderboardRepository ?? _MockPinballRepository(),
             ),
             RepositoryProvider.value(
               value: shareRepository ?? _MockShareRepository(),

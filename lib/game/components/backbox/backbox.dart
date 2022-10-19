@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
-import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:pinball/game/components/backbox/bloc/backbox_bloc.dart';
 import 'package:pinball/game/components/backbox/displays/displays.dart';
 import 'package:pinball/game/game.dart';
 import 'package:pinball/l10n/l10n.dart';
 import 'package:pinball_components/pinball_components.dart';
 import 'package:pinball_flame/pinball_flame.dart';
+import 'package:pinball_models/pinball_models.dart';
+import 'package:pinball_repository/pinball_repository.dart';
 import 'package:pinball_theme/pinball_theme.dart' hide Assets;
 import 'package:pinball_ui/pinball_ui.dart';
 import 'package:platform_helper/platform_helper.dart';
@@ -20,11 +21,11 @@ import 'package:share_repository/share_repository.dart';
 class Backbox extends PositionComponent with ZIndex, HasGameRef {
   /// {@macro backbox}
   Backbox({
-    required LeaderboardRepository leaderboardRepository,
+    required PinballRepository pinballRepository,
     required ShareRepository shareRepository,
     required List<LeaderboardEntryData>? entries,
   })  : _bloc = BackboxBloc(
-          leaderboardRepository: leaderboardRepository,
+          pinballRepository: pinballRepository,
           initialEntries: entries,
         ),
         _shareRepository = shareRepository;

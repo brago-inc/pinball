@@ -29,13 +29,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  authentication_repository:
-    path: packages/authentication_repository
   bloc: ^8.0.2
-  cloud_firestore: ^3.1.10
   equatable: ^2.0.3
-  firebase_auth: ^3.3.16
-  firebase_core: ^1.15.0
   flame: ^1.1.1
   flame_bloc: ^1.4.0
   flame_forge2d:
@@ -53,8 +48,6 @@ dependencies:
   http_pinball_api:
     path: packages/http_pinball_api
   intl: ^0.17.0
-  leaderboard_repository:
-    path: packages/leaderboard_repository
   pinball_api:
     path: packages/pinball_api
   pinball_audio:

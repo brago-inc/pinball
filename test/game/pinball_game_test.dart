@@ -10,13 +10,13 @@ import 'package:flame_test/flame_test.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:leaderboard_repository/src/leaderboard_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pinball/game/behaviors/behaviors.dart';
 import 'package:pinball/game/game.dart';
 import 'package:pinball/select_character/select_character.dart';
 import 'package:pinball_audio/src/pinball_audio.dart';
 import 'package:pinball_components/pinball_components.dart';
+import 'package:pinball_repository/pinball_repository.dart';
 import 'package:platform_helper/platform_helper.dart';
 import 'package:share_repository/share_repository.dart';
 
@@ -24,7 +24,7 @@ class _TestPinballGame extends PinballGame {
   _TestPinballGame()
       : super(
           characterThemeBloc: CharacterThemeCubit(),
-          leaderboardRepository: _MockLeaderboardRepository(),
+          pinballRepository: _MockPinballRepository(),
           shareRepository: _MockShareRepository(),
           gameBloc: GameBloc(),
           l10n: _MockAppLocalizations(),
@@ -45,7 +45,7 @@ class _TestDebugPinballGame extends DebugPinballGame {
   _TestDebugPinballGame()
       : super(
           characterThemeBloc: CharacterThemeCubit(),
-          leaderboardRepository: _MockLeaderboardRepository(),
+          pinballRepository: _MockPinballRepository(),
           shareRepository: _MockShareRepository(),
           gameBloc: GameBloc(),
           l10n: _MockAppLocalizations(),
@@ -85,8 +85,7 @@ class _MockDragUpdateInfo extends Mock implements DragUpdateInfo {}
 
 class _MockDragEndInfo extends Mock implements DragEndInfo {}
 
-class _MockLeaderboardRepository extends Mock implements LeaderboardRepository {
-}
+class _MockPinballRepository extends Mock implements PinballRepository {}
 
 class _MockShareRepository extends Mock implements ShareRepository {}
 

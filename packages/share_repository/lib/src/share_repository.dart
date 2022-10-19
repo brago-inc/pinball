@@ -20,6 +20,9 @@ class ShareRepository {
   /// Url to the Pinball game.
   static const pinballGameUrl = 'https://pinball.flutter.dev';
 
+  /// Url to the Pinball game.
+  static const pinballApiUrl = 'api.pinball.bragogames.com/';
+
   /// Returns a url to share the [value] on the given [platform].
   ///
   /// The returned url can be opened using the [url_launcher](https://pub.dev/packages/url_launcher) package.

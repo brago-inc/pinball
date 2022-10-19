@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:pinball/leaderboard/models/leader_board_entry.dart';
+import 'package:pinball_models/pinball_models.dart';
+import 'package:pinball_repository/pinball_repository.dart';
 import 'package:pinball_theme/pinball_theme.dart';
 
 part 'backbox_event.dart';
@@ -13,9 +14,9 @@ part 'backbox_state.dart';
 class BackboxBloc extends Bloc<BackboxEvent, BackboxState> {
   /// {@macro backbox_bloc}
   BackboxBloc({
-    required LeaderboardRepository leaderboardRepository,
+    required PinballRepository pinballRepository,
     required List<LeaderboardEntryData>? initialEntries,
-  })  : _leaderboardRepository = leaderboardRepository,
+  })  : _pinballRepository = pinballRepository,
         super(
           initialEntries != null
               ? LeaderboardSuccessState(entries: initialEntries)
@@ -27,7 +28,7 @@ class BackboxBloc extends Bloc<BackboxEvent, BackboxState> {
     on<LeaderboardRequested>(_onLeaderboardRequested);
   }
 
-  final LeaderboardRepository _leaderboardRepository;
+  final PinballRepository _pinballRepository;
 
   void _onPlayerInitialsRequested(
     PlayerInitialsRequested event,
@@ -47,7 +48,7 @@ class BackboxBloc extends Bloc<BackboxEvent, BackboxState> {
   ) async {
     try {
       emit(LoadingState());
-      await _leaderboardRepository.addLeaderboardEntry(
+      await _pinballRepository.addLeaderboardEntry(
         LeaderboardEntryData(
           playerInitials: event.initials,
           score: event.score,
@@ -86,7 +87,7 @@ class BackboxBloc extends Bloc<BackboxEvent, BackboxState> {
     try {
       emit(LoadingState());
 
-      final entries = await _leaderboardRepository.fetchTop10Leaderboard();
+      final entries = await _pinballRepository.fetchTop10Leaderboard();
 
       emit(LeaderboardSuccessState(entries: entries));
     } catch (error, stackTrace) {

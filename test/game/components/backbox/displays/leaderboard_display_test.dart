@@ -5,12 +5,12 @@ import 'package:flame/game.dart';
 import 'package:flame_forge2d/forge2d_game.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pinball/game/components/backbox/displays/leaderboard_display.dart';
 import 'package:pinball/l10n/l10n.dart';
 import 'package:pinball_components/pinball_components.dart';
 import 'package:pinball_flame/pinball_flame.dart';
+import 'package:pinball_models/pinball_models.dart';
 import 'package:pinball_theme/pinball_theme.dart' hide Assets;
 
 class _MockAppLocalizations extends Mock implements AppLocalizations {

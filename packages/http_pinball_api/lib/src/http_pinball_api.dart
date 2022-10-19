@@ -18,7 +18,7 @@ class HttpPinballApi extends PinballApi {
   @override
   Future<List<LeaderboardEntryData>> fetchTop10Leaderboard() async {
     try {
-      final res = await _client.get(Uri.parse('${_client.baseUrl}/'));
+      final res = await _client.get(Uri.parse('${_client.baseUrl}/leaderboard-list'));
       if (res.statusCode == 200) {
         return List<LeaderboardEntryData>.from(
             (jsonDecode(utf8.decode(res.bodyBytes)) as Iterable).map(

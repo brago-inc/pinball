@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:pinball/game/components/backbox/bloc/backbox_bloc.dart';
+import 'package:pinball_models/pinball_models.dart';
 import 'package:pinball_theme/pinball_theme.dart';
 
 void main() {

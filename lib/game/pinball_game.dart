@@ -6,7 +6,6 @@ import 'package:flame/input.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:pinball/game/behaviors/behaviors.dart';
 import 'package:pinball/game/game.dart';
 import 'package:pinball/l10n/l10n.dart';
@@ -14,6 +13,8 @@ import 'package:pinball/select_character/select_character.dart';
 import 'package:pinball_audio/pinball_audio.dart';
 import 'package:pinball_components/pinball_components.dart';
 import 'package:pinball_flame/pinball_flame.dart';
+import 'package:pinball_models/pinball_models.dart';
+import 'package:pinball_repository/pinball_repository.dart';
 import 'package:platform_helper/platform_helper.dart';
 import 'package:share_repository/share_repository.dart';
 
@@ -21,7 +22,7 @@ class PinballGame extends PinballForge2DGame
     with HasKeyboardHandlerComponents, MultiTouchTapDetector, HasTappables {
   PinballGame({
     required CharacterThemeCubit characterThemeBloc,
-    required this.leaderboardRepository,
+    required this.pinballRepository,
     required this.shareRepository,
     required GameBloc gameBloc,
     required AppLocalizations l10n,
@@ -56,7 +57,7 @@ class PinballGame extends PinballForge2DGame
 
   final PinballAudioPlayer _audioPlayer;
 
-  final LeaderboardRepository leaderboardRepository;
+  final PinballRepository pinballRepository;
 
   final ShareRepository shareRepository;
 
@@ -70,7 +71,7 @@ class PinballGame extends PinballForge2DGame
 
   Future<void> preFetchLeaderboard() async {
     try {
-      _entries = await leaderboardRepository.fetchTop10Leaderboard();
+      _entries = await pinballRepository.fetchTop10Leaderboard();
     } catch (_) {
       // An initial null leaderboard means that we couldn't fetch
       // the entries for the [Backbox] and it will show the relevant display.
@@ -94,7 +95,7 @@ class PinballGame extends PinballForge2DGame
           MultiFlameProvider(
             providers: [
               FlameProvider<PinballAudioPlayer>.value(_audioPlayer),
-              FlameProvider<LeaderboardRepository>.value(leaderboardRepository),
+              FlameProvider<PinballRepository>.value(pinballRepository),
               FlameProvider<ShareRepository>.value(shareRepository),
               FlameProvider<AppLocalizations>.value(_l10n),
               FlameProvider<PlatformHelper>.value(platformHelper),
@@ -118,7 +119,7 @@ class PinballGame extends PinballForge2DGame
                       BoardBackgroundSpriteComponent(),
                       Boundaries(),
                       Backbox(
-                        leaderboardRepository: leaderboardRepository,
+                        pinballRepository: pinballRepository,
                         shareRepository: shareRepository,
                         entries: _entries,
                       ),
@@ -216,7 +217,7 @@ class PinballGame extends PinballForge2DGame
 class DebugPinballGame extends PinballGame with FPSCounter, PanDetector {
   DebugPinballGame({
     required CharacterThemeCubit characterThemeBloc,
-    required LeaderboardRepository leaderboardRepository,
+    required PinballRepository pinballRepository,
     required ShareRepository shareRepository,
     required AppLocalizations l10n,
     required PinballAudioPlayer audioPlayer,
@@ -225,7 +226,7 @@ class DebugPinballGame extends PinballGame with FPSCounter, PanDetector {
   }) : super(
           characterThemeBloc: characterThemeBloc,
           audioPlayer: audioPlayer,
-          leaderboardRepository: leaderboardRepository,
+          pinballRepository: pinballRepository,
           shareRepository: shareRepository,
           l10n: l10n,
           platformHelper: platformHelper,

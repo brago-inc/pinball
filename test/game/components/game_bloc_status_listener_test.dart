@@ -6,7 +6,6 @@ import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:leaderboard_repository/leaderboard_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pinball/game/game.dart';
 import 'package:pinball/l10n/l10n.dart';
@@ -14,6 +13,7 @@ import 'package:pinball/select_character/select_character.dart';
 import 'package:pinball_audio/pinball_audio.dart';
 import 'package:pinball_components/pinball_components.dart';
 import 'package:pinball_flame/pinball_flame.dart';
+import 'package:pinball_repository/pinball_repository.dart';
 import 'package:pinball_theme/pinball_theme.dart' as theme;
 import 'package:platform_helper/platform_helper.dart';
 import 'package:share_repository/share_repository.dart';
@@ -82,7 +82,7 @@ class _TestGame extends Forge2DGame with HasTappables {
 
 class _MockPinballAudioPlayer extends Mock implements PinballAudioPlayer {}
 
-class _MockLeaderboardRepository extends Mock implements LeaderboardRepository {
+class _MockPinballRepository extends Mock implements PinballRepository {
 }
 
 class _MockShareRepository extends Mock implements ShareRepository {}
@@ -181,10 +181,10 @@ void main() {
           'changes the backbox display',
           (game) async {
             final component = GameBlocStatusListener();
-            final leaderboardRepository = _MockLeaderboardRepository();
+            final pinballRepository = _MockPinballRepository();
             final shareRepository = _MockShareRepository();
             final backbox = Backbox(
-              leaderboardRepository: leaderboardRepository,
+              pinballRepository: pinballRepository,
               shareRepository: shareRepository,
               entries: const [],
             );
@@ -199,10 +199,10 @@ void main() {
           'removes FlipperKeyControllingBehavior from Flipper',
           (game) async {
             final component = GameBlocStatusListener();
-            final leaderboardRepository = _MockLeaderboardRepository();
+            final pinballRepository = _MockPinballRepository();
             final shareRepository = _MockShareRepository();
             final backbox = Backbox(
-              leaderboardRepository: leaderboardRepository,
+              pinballRepository: pinballRepository,
               shareRepository: shareRepository,
               entries: const [],
             );
@@ -232,10 +232,10 @@ void main() {
           'removes PlungerKeyControllingBehavior from Plunger',
           (game) async {
             final component = GameBlocStatusListener();
-            final leaderboardRepository = _MockLeaderboardRepository();
+            final pinballRepository = _MockPinballRepository();
             final shareRepository = _MockShareRepository();
             final backbox = Backbox(
-              leaderboardRepository: leaderboardRepository,
+              pinballRepository: pinballRepository,
               shareRepository: shareRepository,
               entries: const [],
             );
@@ -266,10 +266,10 @@ void main() {
           'removes PlungerPullingBehavior from Plunger',
           (game) async {
             final component = GameBlocStatusListener();
-            final leaderboardRepository = _MockLeaderboardRepository();
+            final pinballRepository = _MockPinballRepository();
             final shareRepository = _MockShareRepository();
             final backbox = Backbox(
-              leaderboardRepository: leaderboardRepository,
+              pinballRepository: pinballRepository,
               shareRepository: shareRepository,
               entries: const [],
             );
@@ -304,10 +304,10 @@ void main() {
           (game) async {
             final audioPlayer = _MockPinballAudioPlayer();
             final component = GameBlocStatusListener();
-            final leaderboardRepository = _MockLeaderboardRepository();
+            final pinballRepository = _MockPinballRepository();
             final shareRepository = _MockShareRepository();
             final backbox = Backbox(
-              leaderboardRepository: leaderboardRepository,
+              pinballRepository: pinballRepository,
               shareRepository: shareRepository,
               entries: const [],
             );
@@ -409,10 +409,10 @@ void main() {
           'adds FlipperKeyControllingBehavior to Flippers',
           (game) async {
             final component = GameBlocStatusListener();
-            final leaderboardRepository = _MockLeaderboardRepository();
+            final pinballRepository = _MockPinballRepository();
             final shareRepository = _MockShareRepository();
             final backbox = Backbox(
-              leaderboardRepository: leaderboardRepository,
+              pinballRepository: pinballRepository,
               shareRepository: shareRepository,
               entries: const [],
             );
@@ -442,10 +442,10 @@ void main() {
           'adds PlungerKeyControllingBehavior to Plunger',
           (game) async {
             final component = GameBlocStatusListener();
-            final leaderboardRepository = _MockLeaderboardRepository();
+            final pinballRepository = _MockPinballRepository();
             final shareRepository = _MockShareRepository();
             final backbox = Backbox(
-              leaderboardRepository: leaderboardRepository,
+              pinballRepository: pinballRepository,
               shareRepository: shareRepository,
               entries: const [],
             );
@@ -476,10 +476,10 @@ void main() {
           'adds PlungerPullingBehavior to Plunger',
           (game) async {
             final component = GameBlocStatusListener();
-            final leaderboardRepository = _MockLeaderboardRepository();
+            final pinballRepository = _MockPinballRepository();
             final shareRepository = _MockShareRepository();
             final backbox = Backbox(
-              leaderboardRepository: leaderboardRepository,
+              pinballRepository: pinballRepository,
               shareRepository: shareRepository,
               entries: const [],
             );
@@ -507,10 +507,10 @@ void main() {
           'adds PlungerAutoPullingBehavior to Plunger',
           (game) async {
             final component = GameBlocStatusListener();
-            final leaderboardRepository = _MockLeaderboardRepository();
+            final pinballRepository = _MockPinballRepository();
             final shareRepository = _MockShareRepository();
             final backbox = Backbox(
-              leaderboardRepository: leaderboardRepository,
+              pinballRepository: pinballRepository,
               shareRepository: shareRepository,
               entries: const [],
             );
