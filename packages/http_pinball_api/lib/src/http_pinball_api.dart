@@ -18,12 +18,13 @@ class HttpPinballApi extends PinballApi {
   @override
   Future<List<LeaderboardEntryData>> fetchTop10Leaderboard() async {
     try {
-      final res = await _client.get(Uri.parse('${_client.baseUrl}/leaderboard-list'));
+      final res =
+          await _client.get(Uri.parse('${_client.baseUrl}/leaderboard-list'));
       if (res.statusCode == 200) {
         return List<LeaderboardEntryData>.from(
             (jsonDecode(utf8.decode(res.bodyBytes)) as Iterable).map(
-                  (x) => LeaderboardEntryData.fromJson(x as Map<String, dynamic>),
-            ));
+          (x) => LeaderboardEntryData.fromJson(x as Map<String, dynamic>),
+        ));
       }
       return [];
     } catch (error, stack) {
@@ -36,12 +37,22 @@ class HttpPinballApi extends PinballApi {
   @override
   Future<void> addLeaderboardEntry(LeaderboardEntryData entry) async {
     try {
-
+      final paramsUrl = transformMapToUrlString(entry.toJson());
+      await _client
+          .get(Uri.parse('${_client.baseUrl}/leaderboard-save$paramsUrl'));
     } catch (error, stack) {
-      throw FetchLeaderboardException(error, stack);
+      throw AddLeaderboardEntryException(error, stack);
     } finally {
       _client.close();
     }
   }
 
+  /// transform map to url
+  String transformMapToUrlString(Map<String, dynamic> params) {
+    var url = '';
+    params.keys.forEach((key) {
+      url += '&$key=${params[key]}';
+    });
+    return '?${url.substring(1)}';
+  }
 }
