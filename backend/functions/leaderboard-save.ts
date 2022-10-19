@@ -22,10 +22,10 @@ const handler: Handler = async (event, context) => {
 
     const results = await collection.find().sort('score', 'descending').toArray()
     if (results.length < 10) {
-      await collection.insertOne({ playerInitials, score, character })
+      await collection.insertOne({ playerInitials, score: parseInt(score, 10), character })
     } else {
       if (parseInt(score, 10) > parseInt(results[9].score, 10)) {
-        await collection.insertOne({ playerInitials, score, character })
+        await collection.insertOne({ playerInitials, score: parseInt(score, 10), character })
       }
     }
 
