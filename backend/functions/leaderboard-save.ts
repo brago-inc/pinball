@@ -20,12 +20,16 @@ const handler: Handler = async (event, context) => {
       return { statusCode: httpStatus.BAD_REQUEST, body: 'invalid params' }
     }
 
-    const results = await collection.insertOne({ playerInitials, score, character })
-
-    return {
-      statusCode: httpStatus.OK,
-      body: JSON.stringify(results)
+    const results = await collection.find().sort('score', 'descending').toArray()
+    if (results.length < 10) {
+      await collection.insertOne({ playerInitials, score, character })
+    } else {
+      if (parseInt(score, 10) > parseInt(results[9].score, 10)) {
+        await collection.insertOne({ playerInitials, score, character })
+      }
     }
+
+    return { statusCode: httpStatus.OK }
   } catch (error) {
     if (error instanceof MongoServerError) {
       return { statusCode: httpStatus.INTERNAL_SERVER_ERROR, body: error }
