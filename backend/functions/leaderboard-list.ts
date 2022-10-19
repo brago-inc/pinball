@@ -15,6 +15,11 @@ const handler: Handler = async (event, context) => {
 
     return {
       statusCode: httpStatus.OK,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+      },
       body: JSON.stringify(results)
     }
   } catch (error) {

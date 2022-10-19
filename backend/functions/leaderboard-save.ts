@@ -29,7 +29,14 @@ const handler: Handler = async (event, context) => {
       }
     }
 
-    return { statusCode: httpStatus.OK }
+    return {
+      statusCode: httpStatus.OK,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+      },
+    }
   } catch (error) {
     if (error instanceof MongoServerError) {
       return { statusCode: httpStatus.INTERNAL_SERVER_ERROR, body: error }
