@@ -1,4 +1,5 @@
 import { Handler } from '@netlify/functions'
+import * as httpStatus from 'http-status'
 import { MongoClient, MongoServerError } from 'mongodb'
 
 // @ts-ignore
@@ -10,17 +11,17 @@ const handler: Handler = async (event, context) => {
     const database = (await clientPromise).db(process.env.MONGODB_DATABASE)
     // @ts-ignore
     const collection = database.collection(process.env.MONGODB_COLLECTION)
-    const results = collection.find().sort('score', 'descending').limit(10).toArray()
+    const results = await collection.find().sort('score', 'descending').limit(10).toArray()
 
     return {
-      statusCode: 200,
+      statusCode: httpStatus.OK,
       body: JSON.stringify(results)
     }
   } catch (error) {
     if (error instanceof MongoServerError) {
-      return { statusCode: 500, body: error }
+      return { statusCode: httpStatus.INTERNAL_SERVER_ERROR, body: error }
     }
-    return { statusCode: 500, body: (error as any).message }
+    return { statusCode: httpStatus.INTERNAL_SERVER_ERROR, body: (error as any).message }
   }
 }
 
