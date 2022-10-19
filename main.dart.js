@@ -68240,7 +68240,7 @@ $0(){var s=0,r=A.v(t.Gu),q,p
 var $async$$0=A.w(function(a,b){if(a===1)return A.r(b,r)
 while(true)switch(s){case 0:p=A.aAN()
 if(p==null)p=new A.uY(A.aw(t.Gf))
-q=new A.nn(new A.Kq(new A.a6F(new A.Kp(p,"api.pinball.bragogames.com/"))),B.GO,A.aGQ(),new A.Kv(),null)
+q=new A.nn(new A.Kq(new A.a6F(new A.Kp(p,"https://api.pinball.bragogames.com"))),B.GO,A.aGQ(),new A.Kv(),null)
 s=1
 break
 case 1:return A.t(q,r)}})
