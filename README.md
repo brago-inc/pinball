@@ -2,6 +2,8 @@
 
 ---
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1b30ea4a-2259-4e6a-8620-992f9f65e875/deploy-status)](https://app.netlify.com/sites/pinball-backend/deploys)
+
 ## Getting Started 🚀
 
 To run the desired project either use the launch configuration in VSCode/Android Studio or use the following commands:
