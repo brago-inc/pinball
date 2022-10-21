@@ -1,6 +1,6 @@
 [functions]
   directory = "functions"
-  external_node_modules = ["mongodb", "http-status"]
+  external_node_modules = ["mongodb", "http-status", "nodemailer"]
 
 [[redirects]]
   from = "/"
